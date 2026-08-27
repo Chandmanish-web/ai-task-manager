@@ -12,6 +12,7 @@ venv/
 
 # Database + generated artifacts
 *.db
+*.db-*
 *.db-journal
 backend/generated/
 
