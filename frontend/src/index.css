@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-panel-inset text-ink font-sans antialiased;
+    background-image: repeating-linear-gradient(
+      0deg,
+      rgba(148, 163, 184, 0.08) 0px,
+      rgba(148, 163, 184, 0.08) 1px,
+      transparent 1px,
+      transparent 5px
+    );
+  }
+
+  /* Keyboard focus must always be visible — mouse focus stays quiet. */
+  :focus-visible {
+    @apply outline-none ring-2 ring-amber/70 ring-offset-2 ring-offset-panel-inset;
+  }
+
+  ::selection {
+    @apply bg-amber/30;
+  }
+
+  input,
+  textarea,
+  select,
+  button {
+    font: inherit;
+  }
+
+  /* Slim scrollbars so panels keep their edges. */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #364554 transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: #364554;
+    border-radius: 9999px;
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+@layer components {
+  .legend {
+    @apply font-legend tracking-legend text-ink-faint;
+  }
+
+  .panel {
+    @apply rounded-md border border-line-soft bg-panel shadow-panel;
+  }
+
+  .field {
+    @apply w-full rounded-md border border-line-soft bg-panel px-3 py-2 text-sm
+           text-ink placeholder:text-ink-faint transition-colors
+           focus:border-amber/60 focus:outline-none;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded border px-3 py-1.5
+           font-legend text-[13px] tracking-legend transition-colors
+           disabled:cursor-not-allowed disabled:opacity-40;
+  }
+
+  .btn-primary {
+    @apply btn border-amber bg-amber text-white hover:bg-amber/90;
+  }
+
+  .btn-ghost {
+    @apply btn border-line text-ink-dim hover:border-ink-dim hover:bg-panel-inset hover:text-ink;
+  }
+
+  .btn-danger {
+    @apply btn border-alert/50 text-alert hover:bg-red-50;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
